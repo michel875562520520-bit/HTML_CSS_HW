@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/reset.css" />
+    <link rel="stylesheet" href="form_HW.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <section class="sec1">
+      <div class="hd">
+        <div class="hd-top"></div>
+        <div class="hd-bd1">
+          <h1 class="hd-bd1-h1">F2E02 表單練習</h1>
+          <p class="hd-bd1-p">僅供新尖兵 F2E02 表單切版練習作業</p>
+        </div>
+        <div class="hd-bd2">
+          <a href="" class="hd-bd2-a1">登入 Google</a>
+          <span class="hd-bd2-span">即可儲存進度。</span>
+          <a href="" class="hd-bd2-a2">瞭解詳情</a>
+        </div>
+        <div class="hd-bd3">
+          <p>* 表示必填問題</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec2">
+      <div class="bd1">
+        <h2 class="bd1-bd1-h2">
+          姓名<span style="padding: 3px; color: #db372d">*</span>
+        </h2>
+        <div class="bd1-bd1-ans">
+          <input
+            type="text"
+            name="bd-bd1-ans1"
+            id=""
+            class="bd1-bd1-input"
+            placeholder="您的回答"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section class="sec3">
+      <div class="bd2">
+        <h2 class="bd2-bd1-h2">
+          信箱<span style="padding: 3px; color: #db372d">*</span>
+        </h2>
+        <div class="bd2-bd1-ans">
+          <input
+            type="text"
+            name="bd2-bd1-ans2"
+            id=""
+            class="bd2-bd1-input"
+            placeholder="您的回答"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section class="sec4">
+      <div>
+        <h2 class="bd3-bd1-h2">生日</h2>
+      </div>
+      <div class="bd3-bd1-bir">
+        <p class="bd3-bd1-p1">日期</p>
+        <input type="date" name="date" id="date" class="bd3-bd1-date" />
+      </div>
+    </section>
+
+    <section class="sec5">
+      <div class="bd4">
+        <h2 class="bd4-bd1-h2">想跟老師說悄悄話</h2>
+        <div class="bd4-bd1-ans">
+          <input
+            type="text"
+            name=""
+            id=""
+            class="bd4-bd1-input"
+            placeholder="您的回答"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section class="sec6">
+      <div>
+        <h2 class="bd5-bd1-h2">喜歡的顏色</h2>
+      </div>
+      <div>
+        <input type="radio" name="bd5-radio" id="bd5-bd1-radio1" />
+        <label for="bd5-bd1-radio1" style="margin-left: 10px">黃</label>
+      </div>
+      <div>
+        <input type="radio" name="bd5-radio" id="bd5-bd1-radio2" />
+        <label for="bd5-bd1-radio2" style="margin-left: 10px">綠</label>
+      </div>
+      <div>
+        <input type="radio" name="bd5-radio" id="bd5-bd1-radio3" />
+        <label for="bd5-bd1-radio3" style="margin-left: 10px">紅</label>
+      </div>
+    </section>
+
+    <section class="sec7">
+      <div>
+        <h2 class="bd6-bd1-h2">喜歡吃的飲食類型</h2>
+      </div>
+      <div>
+        <input type="checkbox" name="bd6-checkbox" id="bd6-bd1-checkbox1" />
+        <label for="bd6-bd1-checkbox1" style="margin-left: 10px">中式</label>
+      </div>
+      <div>
+        <input type="checkbox" name="bd6-checkbox" id="bd6-bd1-checkbox2" />
+        <label for="bd6-bd1-checkbox2" style="margin-left: 10px">義式</label>
+      </div>
+      <div>
+        <input type="checkbox" name="bd6-checkbox" id="bd6-bd1-checkbox3" />
+        <label for="bd6-bd1-checkbox3" style="margin-left: 10px">日式</label>
+      </div>
+      <div>
+        <input type="checkbox" name="bd6-checkbox" id="bd6-bd1-checkbox4" />
+        <label for="bd6-bd1-checkbox4" style="margin-left: 10px">韓式</label>
+      </div>
+      <div>
+        <input type="checkbox" name="bd6-checkbox" id="bd6-bd1-checkbox5" />
+        <label for="bd6-bd1-checkbox5" style="margin-left: 10px">美式</label>
+      </div>
+      <div>
+        <input type="checkbox" name="bd6-checkbox" id="bd6-bd1-checkbox6" />
+        <label for="bd6-bd1-checkbox6" style="margin-left: 10px">泰式</label>
+      </div>
+    </section>
+
+    <section class="sec8">
+      <div>
+        <h2 class="bd7-bd1-h2">
+          最想去的國家 (使用 optgroup 將選項分為不同洲)
+        </h2>
+      </div>
+      <div class="bd7-bd1-opt">
+        <select name="country" id="country" style="padding-left: 10px">
+          <optgroup label="亞洲">
+            <option value="ct1">日本</option>
+            <option value="ct2">韓國</option>
+            <option value="ct3">泰國</option>
+          </optgroup>
+          <optgroup label="歐洲">
+            <option value="ct4">德國</option>
+            <option value="ct5">英國</option>
+          </optgroup>
+          <optgroup label="美洲">
+            <option value="ct4">加拿大</option>
+            <option value="ct5">美國</option>
+          </optgroup>
+        </select>
+      </div>
+    </section>
+
+    <section class="sec9">
+      <div class="ft">
+        <button type="submit" class="ft-bd1-btn">提交</button>
+        <div class="ft-bd1-p1">
+          <p>清除表單</p>
+        </div>
+        <div class="ft-bd1-p2">
+          <p>請勿利用 Google 表單送出密碼。</p>
+        </div>
+        <div class="ft-bd1-p3">
+          <p>這份表單是在 五倍紅寶石程式資訊教育股份有限公司 中建立。</p>
+        </div>
+        <div class="ft-bd1-p4">
+          <p>這份表單很可疑嗎？ <a href="">報告</a></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec10">
+      <div class="ft-link">
+        <a
+          href="https://workspace.google.com/products/forms/"
+          class="ft-link-a"
+        >
+          <img src="/image/google.svg" style="filter: opacity(0.6)" alt="" />
+          <span class="ft-link-span">表單</span>
+        </a>
+      </div>
+    </section>
+    <button type="button" class="btn-fixed" style="filter: opacity(0.4)">
+      <i class="fa-regular fa-circle-question"></i>
+    </button>
+  </body>
+</html>
