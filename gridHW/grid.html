@@ -1,0 +1,804 @@
+<!doctype html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>焦點話題</title>
+    <link rel="stylesheet" href="/reset.css" />
+    <style>
+      body {
+        font-family: "Microsoft JhengHei", "PingFang TC", sans-serif;
+        background: #fff;
+      }
+
+      .focus-part {
+        width: 1100px;
+        margin: 20px auto;
+      }
+
+      .focus-part-title {
+        display: flex;
+        align-items: center;
+        gap: 0px;
+        margin-bottom: 12px;
+        position: relative;
+      }
+
+      .triangle {
+        width: 0;
+        height: 0;
+        border-top: 20px solid #f5a623;
+        border-right: 20px solid transparent;
+      }
+
+      .focus-part-title h2 {
+        font-size: 24px;
+        font-weight: bold;
+        color: #222;
+        position: absolute;
+        left: 10px;
+        top: 0;
+      }
+      .focus-part-content {
+        display: grid;
+        grid-template-columns: 230px 460px 380px;
+        gap: 10px;
+      }
+      .focus-left {
+        width: 230px;
+        height: 330px;
+      }
+
+      .focus-left .card {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+      }
+
+      .focus-left .card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .focus-middle {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        height: 330px;
+      }
+
+      .middle-col-left {
+        display: grid;
+        grid-template-rows: 210px 105px;
+        gap: 15px;
+      }
+
+      .middle-col-right {
+        display: grid;
+        grid-template-rows: 105px 210px;
+        gap: 15px;
+      }
+
+      .focus-middle .card {
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+
+      .focus-middle .card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .card-label {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(transparent, rgba(0, 0, 0, 0.65));
+        color: #fff;
+        font-size: 18px;
+        font-weight: bold;
+        padding: 20px 10px 8px;
+      }
+
+      .focus-right {
+        display: grid;
+        grid-template-rows: repeat(4, 1fr);
+        gap: 10px;
+        height: 330px;
+      }
+
+      .focus-right-row {
+        display: grid;
+        grid-template-columns: 1fr 110px;
+        column-gap: 8px;
+        align-items: center;
+        border-bottom: 1px solid #eee;
+        background-color: #fafafa;
+      }
+
+      .focus-right-row:last-child {
+        border-bottom: none;
+      }
+
+      .focus-right-row p {
+        font-size: 13px;
+        color: #333;
+        cursor: pointer;
+        line-height: 1.4;
+        font-weight: 700;
+      }
+
+      .focus-right-row p:hover {
+        color: #e87722;
+      }
+
+      .focus-right-row img {
+        width: 112px;
+        height: 74px;
+        object-fit: cover;
+        border-radius: 4px;
+        display: block;
+      }
+      .jp-part {
+        width: 1100px;
+        margin: 20px auto;
+      }
+      .jp-part-title {
+        display: flex;
+        align-items: center;
+        gap: 0px;
+        margin-bottom: 12px;
+        position: relative;
+        height: 40px;
+        line-height: 40px;
+      }
+      .jp-part-title .triangle {
+        width: 0;
+        height: 0;
+        border-top: 20px solid #11d073;
+        border-right: 20px solid transparent;
+        position: relative;
+        top: -10px;
+      }
+      .jp-part-title h2 {
+        font-size: 24px;
+        font-weight: bold;
+        color: #222;
+        position: absolute;
+        left: 10px;
+        top: 0;
+      }
+      .jp-part-title ul {
+        display: flex;
+        position: absolute;
+        left: 280px;
+        gap: 30px;
+      }
+      .jp-part-title li {
+        font-size: 18px;
+        padding: 5px;
+      }
+      .jp-part-title li:nth-child(1) {
+        color: #0c9251;
+        font-weight: 700;
+        border-bottom: 3px solid #11d073;
+      }
+      .jp-part-content {
+        display: grid;
+        grid-template-columns: 540px 260px 260px;
+        gap: 20px;
+      }
+      .jp-part-left {
+        width: 540px;
+        height: 395px;
+      }
+      .jp-part-left .jp-card {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+      }
+
+      .jp-part-left .jp-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .jp-card-left-label {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        flex-wrap: wrap;
+        background: linear-gradient(transparent, rgba(0, 0, 0, 0.65));
+        color: #fff;
+        font-size: 13px;
+        font-weight: bold;
+        padding: 10px;
+      }
+      .jp-card-left-label h3 {
+        width: 540px;
+        font-size: 20px;
+      }
+      .jp-card-left-label p {
+        font-size: 16px;
+      }
+      .jp-card-left-label-price {
+        display: flex;
+        gap: 280px;
+      }
+      .jp-card-left-label-price span {
+        color: #fab617;
+      }
+      .jp-part-middle {
+        display: grid;
+        grid-template-rows: 187.5px 187.5px;
+        gap: 20px;
+      }
+      .jp-part-middle .jp-card {
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+
+      .jp-part-middle .jp-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .jp-part-right {
+        display: grid;
+        grid-template-rows: 187.5px 187.5px;
+        gap: 20px;
+      }
+      .jp-part-right .jp-card {
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+
+      .jp-part-right .jp-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .jp-card-label {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        flex-wrap: wrap;
+        background: linear-gradient(transparent, rgba(0, 0, 0, 0.65));
+        color: #fff;
+        font-size: 13px;
+        font-weight: bold;
+        padding: 10px;
+      }
+      .jp-card-label h3 {
+        width: 240px;
+        font-size: 20px;
+      }
+      .jp-card-label p {
+        font-size: 16px;
+      }
+      .jp-card-label-price {
+        display: flex;
+        width: 240px;
+        justify-content: space-between;
+      }
+      .jp-card-label-price span {
+        color: #fab617;
+      }
+      .solo-part {
+        width: 1100px;
+        margin: 20px auto;
+        display: grid;
+        grid-template-columns: 260px 820px;
+        gap: 20px;
+      }
+      .solo-part-left {
+        display: grid;
+        grid-template-rows: 100px 400px;
+        gap: 20px;
+      }
+      .solo-part-right {
+        display: grid;
+        grid-template-rows: 100px 400px;
+        gap: 20px;
+      }
+      .solo-part-left-top .triangle {
+        width: 0;
+        height: 0;
+        border-top: 20px solid #11d073;
+        border-right: 20px solid transparent;
+        position: relative;
+        top: 0;
+        left: -5px;
+      }
+      .solo-part-left-top {
+        position: relative;
+      }
+      .solo-part-left-top h2 {
+        font-size: 30px;
+        font-weight: bold;
+        color: #222;
+        position: absolute;
+        left: 10px;
+        top: 0;
+        text-indent: -10px;
+      }
+      /* .solo-part-left-aside {
+        margin-top: -50px;
+      } */
+      .solo-part-left-aside ul {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+      }
+      .solo-part-left-aside h4 {
+        font-size: 20px;
+        font-weight: 700;
+      }
+      .solo-part-left-aside li {
+        font-size: 14px;
+        margin-right: 20px;
+        padding-top: 10px;
+      }
+      .solo-part-right-top ul {
+        display: flex;
+        gap: 25px;
+        font-size: 18px;
+        padding: 5px;
+      }
+      .solo-part-right-top ul li a:nth-child(1) {
+        color: #0c9251;
+      }
+      .solo-part-right-top ul li:nth-child(1) {
+        border-bottom: 3px solid #11d073;
+      }
+      .commend {
+        width: 84px;
+        background-color: #11d073;
+        font-size: 16px;
+        color: #fff;
+        padding: 5px;
+        border-radius: 5px;
+        margin-top: 20px;
+        display: block;
+        text-align: center;
+      }
+      .solo-part-right-bottom-card {
+        display: grid;
+        grid-template-columns: 400px 400px;
+        gap: 20px;
+      }
+      .solo-part-right-bottom-card-left {
+        display: grid;
+        grid-template-rows: 120px 120px 120px;
+        gap: 20px;
+      }
+      .solo-part-right-bottom-card-right {
+        display: grid;
+        grid-template-rows: 120px 120px 120px;
+        gap: 20px;
+      }
+      .solo-part-right-bottom-card-left-card {
+        display: grid;
+        grid-template-columns: 165px 1fr;
+        column-gap: 20px;
+        align-items: center;
+        border-bottom: 1px solid #eee;
+        background-color: #fafafa;
+        border-radius: 10px;
+        position: relative;
+        /* overflow: hidden; */
+      }
+      .solo-part-right-bottom-card-left-card:last-child {
+        border-bottom: none;
+      }
+      .solo-part-right-bottom-card-left-card-img img {
+        border-radius: 10px;
+      }
+      .solo-part-right-bottom-card-left-card-img {
+        position: relative;
+      }
+      .solo-part-right-bottom-card-left-card-label {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        flex-wrap: wrap;
+        color: #fff;
+        font-size: 13px;
+        font-weight: bold;
+        padding: 10px;
+      }
+
+      .solo-part-right-bottom-card-left-card-info h3 {
+        position: absolute;
+        top: 10px;
+        left: 175px;
+        font-weight: 700;
+      }
+      .solo-part-right-bottom-card-left-card-info p {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+      }
+      .solo-part-right-bottom-card-left-card-info span {
+        color: #ff8b00;
+        font-size: 18px;
+        font-weight: 700;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="focus-part">
+      <div class="focus-part-title">
+        <div class="triangle"></div>
+        <h2>焦點話題</h2>
+      </div>
+
+      <div class="focus-part-content">
+        <div class="focus-left">
+          <div class="card">
+            <img
+              src="https://image.cdn-eztravel.com.tw/UryiumKiUZ8puaPNFgQJil95Fr86h44abIydM0UdWkk/g:ce/q:95/aHR0cHM6Ly9ldmVudC5jZG4tZXp0cmF2ZWwuY29tLnR3L2hwaW1nL2FwcC81NjB4ODIwLzU2MHg4MjBfMjAyNlRURS5qcGc.jpg"
+              alt="易遊網 x 中信兄弟"
+            />
+
+            <div class="card-label">5/13(三)10點 開搶折扣碼</div>
+          </div>
+        </div>
+        <div class="focus-middle">
+          <div class="middle-col-left">
+            <div class="card">
+              <img
+                src="https://image.cdn-eztravel.com.tw/H6WOyfln3xebbD63BdrCKtCYf8c6n-lq7006pv1b7wQ/g:ce/q:95/aHR0cHM6Ly9ldmVudC5jZG4tZXp0cmF2ZWwuY29tLnR3L2hwaW1nL2hwL2Jhbm5lci8yMzB4MjEwLzIzMHgyMTBfMjAyMzExMDFBLnBuZw.png"
+                alt="美西"
+              />
+              <div class="card-label">泰國跟團$14,700起▸</div>
+            </div>
+
+            <div class="card">
+              <img
+                src="https://image.cdn-eztravel.com.tw/KYU7NGY8cykO65XGDhWC3l9FUyxiojyuZNgME-R9Oms/g:ce/q:95/aHR0cHM6Ly9ldmVudC5jZG4tZXp0cmF2ZWwuY29tLnR3L2hwaW1nL2hwL2Jhbm5lci8yMzB4MTA0LzIzMHgxMDRfMjAyMTA4MTJBLnBuZw.png"
+                alt="東京"
+              />
+              <div class="card-label">高鐵假期 折$600▸</div>
+            </div>
+          </div>
+
+          <div class="middle-col-right">
+            <div class="card">
+              <img
+                src="https://image.cdn-eztravel.com.tw/Hn4gYjaYym7bq9-GZsmFRqYyA7c2MPDLaSLsVJZ6jmo/g:ce/q:95/aHR0cHM6Ly9ldmVudC5jZG4tZXp0cmF2ZWwuY29tLnR3L2hwaW1nL2hwL2Jhbm5lci8yMzB4MTA0LzIzMHgxMDRfMjAyMzAzMjhBLnBuZw.png"
+                alt="歌詩達"
+              />
+              <div class="card-label">全球新飯店 搶先住▸</div>
+            </div>
+
+            <div class="card">
+              <img
+                src="https://image.cdn-eztravel.com.tw/RDL3lpPJ97wz5kMa_yVNiDjeR0wvht6wNMXFY4dmxqI/g:ce/q:95/aHR0cHM6Ly9ldmVudC5jZG4tZXp0cmF2ZWwuY29tLnR3L2hwaW1nL2hwL2Jhbm5lci8yMzB4MjEwLzIzMHgyMTBfMjI4XzAxMDYuanBn.jpg"
+                alt="澎湖花火節"
+              />
+              <div class="card-label">歌詩達 4人同行2人免費▸</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="focus-right">
+          <div class="focus-right-row">
+            <p>【TTE旅展】5元搶購攻略文▸</p>
+            <img
+              src="https://image.cdn-eztravel.com.tw/dEMw5W7QSKkCVuJ74qTbBcFLY8v6TxteXNKL4uL64Bs/g:ce/q:95/aHR0cHM6Ly9ldmVudC5jZG4tZXp0cmF2ZWwuY29tLnR3L2hwaW1nL2FwcC8yNjZ4MjAwLzI2NngyMDBfMjAyNlRURS5qcGc.jpg"
+              alt="折扣碼"
+            />
+          </div>
+          <div class="focus-right-row">
+            <p>【折扣碼專區】機票|訂房|跟團▸</p>
+            <img
+              src="https://image.cdn-eztravel.com.tw/0IQrFcwVYp1UvFFq7J-fF23FEW3vy7ENYFQ9EnI--LM/g:ce/q:95/aHR0cHM6Ly9ldmVudC5jZG4tZXp0cmF2ZWwuY29tLnR3L2hwaW1nL2FwcC9hcHBuZXdzLzI0OHgxNzBfMjAyMjA1MjUuanBn.jpg"
+              alt="機票優惠"
+            />
+          </div>
+          <div class="focus-right-row">
+            <p>【機票5折起】週3最高折$800▸</p>
+            <img
+              src="https://image.cdn-eztravel.com.tw/MrcYn7vhnVPpsBZ2iheyjCsLHGNXYdxxtrJEhd4TiVg/g:ce/q:95/aHR0cHM6Ly9ldmVudC5jZG4tZXp0cmF2ZWwuY29tLnR3L2hwaW1nL2FwcC8yNjZ4MjAwLzI2NngyMDBfZmxpZ2h0XzA0MjYuanBn.jpg"
+              alt="2026連假"
+            />
+          </div>
+          <div class="focus-right-row">
+            <p>【APP首購8%】不限金額折抵▸</p>
+            <img
+              src="https://image.cdn-eztravel.com.tw/4GODf7wAZdzQeUK17P07PO89M8cOXHZdX76sKoP4q8A/g:ce/q:95/aHR0cHM6Ly9ldmVudC5jZG4tZXp0cmF2ZWwuY29tLnR3L2hwaW1nL2FwcC8yNjZ4MjAwLzIwMjUxMjIzX2FwcF9maXJzdF9wdXJjaGFzZWRfMjAyNl9RMV8yNjZ4MjAwLmpwZw.jpg"
+              alt="APP首購"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="jp-part">
+      <div class="jp-part-title">
+        <div class="triangle"></div>
+        <h2>日本跟團</h2>
+        <ul>
+          <li><a href="#">精選推薦</a></li>
+          <li>北陸</li>
+          <li>北海道</li>
+          <li>東北</li>
+          <li>東京</li>
+          <li>關西</li>
+          <li>九州</li>
+          <li>四國</li>
+          <li>沖繩</li>
+          <li>高雄出發</li>
+        </ul>
+      </div>
+
+      <div class="jp-part-content">
+        <div class="jp-part-left">
+          <div class="jp-card">
+            <img src="/HTML_CSS/gridHW/image/summer2026_768x400.jpg" alt="" />
+            <div class="jp-card-left-label">
+              <h3>‼️搶先預購．暑假卡位戰✨</h3>
+
+              <div class="jp-card-left-label-price">
+                <p>親子跟團每人現省$500</p>
+                <p>
+                  <span>21,000</span>
+                  起
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="jp-part-middle">
+          <div class="jp-card">
+            <img src="/HTML_CSS/gridHW/image/JP_2386427915.jpg" alt="" />
+            <div class="jp-card-label">
+              <h3>每周推薦 獨家優惠</h3>
+
+              <div class="jp-card-label-price">
+                <p>買到賺到!最高減四千</p>
+                <p>
+                  <span>23,900</span>
+                  起
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="jp-card">
+            <img src="/HTML_CSS/gridHW/image/AU_589626593.jpg" alt="" />
+            <div class="jp-card-label">
+              <h3>已成團專區</h3>
+
+              <div class="jp-card-label-price">
+                <p>出國跟團不必等✈</p>
+                <p>
+                  <span>13,888</span>
+                  起
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="jp-part-right">
+          <div class="jp-card">
+            <img src="/HTML_CSS/gridHW/image/JP_387095311.jpg" alt="" />
+            <div class="jp-card-label">
+              <h3>春日夢幻三重奏💮</h3>
+
+              <div class="jp-card-label-price">
+                <p>芝櫻x粉蝶x紫藤花</p>
+                <p>
+                  <span>23,900</span>
+                  起
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="jp-card">
+            <img src="/HTML_CSS/gridHW/image/FRN0000019425.png" alt="" />
+            <div class="jp-card-label">
+              <h3>易遊嚴選</h3>
+              <div class="jp-card-label-price">
+                <p>立山黑部 雪壁奇景</p>
+
+                <p>
+                  <span>34,900</span>
+                  起
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="solo-part">
+      <div class="solo-part-left">
+        <div class="solo-part-left-top">
+          <div class="triangle"></div>
+          <h2>自遊最夯</h2>
+        </div>
+
+        <div class="solo-part-left-aside">
+          <h4>大家都在找</h4>
+          <ul>
+            <li>護照簽證</li>
+            <li>夢幻海島旅行</li>
+            <li>星宇機加酒</li>
+            <li>長榮大旅行家</li>
+            <li>國外機加酒生日折900</li>
+            <li>每週三會員機加酒折800</li>
+            <li>台中出發自由行</li>
+            <li>高雄出發自由行</li>
+          </ul>
+          <div class="solo-part-left-card">
+            <img
+              src="/HTML_CSS/gridHW/image/華航精緻旅遊2.0_468x342.jpg"
+              alt=""
+            />
+          </div>
+        </div>
+      </div>
+      <div class="solo-part-right">
+        <div class="solo-part-right-top">
+          <ul>
+            <li><a href="#">精選推薦</a></li>
+            <li>日本</li>
+            <li>東南亞</li>
+            <li>島嶼/歐洲</li>
+            <li>高雄出發</li>
+            <li>台中出發</li>
+          </ul>
+          <a href="#" class="commend">推薦專區</a>
+        </div>
+        <div class="solo-part-right-bottom">
+          <div class="solo-part-right-bottom-card">
+            <div class="solo-part-right-bottom-card-left">
+              <div class="solo-part-right-bottom-card-left-card">
+                <div class="solo-part-right-bottom-card-left-card-img">
+                  <img
+                    src="https://image.cdn-eztravel.com.tw/vmeJWBmCchvVxWcsL5Et58OiNQZMNjM6hWb7vNys1HY/rs:fit:1000:600:1/g:ce/q:95/aHR0cHM6Ly9ob3RlbC5jZG4tZXp0cmF2ZWwuY29tLnR3L2h0Zi9mcmcvRlhIL2FyZWFfMjAzL-a-s-mWgDI2NlgyMDAuanBn.jpg"
+                    alt=""
+                  />
+                  <div class="solo-part-right-bottom-card-left-card-label">
+                    大三巴、旅遊塔
+                  </div>
+                </div>
+
+                <div class="solo-part-right-bottom-card-left-card-info">
+                  <h3>澳門機加酒✈３天２夜</h3>
+                  <p>
+                    <span>9,999</span>
+                    起
+                  </p>
+                </div>
+              </div>
+              <div class="solo-part-right-bottom-card-left-card">
+                <div class="solo-part-right-bottom-card-left-card-img">
+                  <img
+                    src="https://image.cdn-eztravel.com.tw/6oquADtl2WX4Jts2PjwLoNXd2ZzrIDik0xPDY0W1DMg/rs:fit:1000:600:1/g:ce/q:95/aHR0cHM6Ly9ob3RlbC5jZG4tZXp0cmF2ZWwuY29tLnR3L2h0Zi9mcmcvRlhIL2FyZWFfMjAyL2Jhbmdrb2tfMDIuanBn.jpg"
+                    alt=""
+                  />
+                  <div class="solo-part-right-bottom-card-left-card-label">
+                    大三巴、旅遊塔
+                  </div>
+                </div>
+
+                <div class="solo-part-right-bottom-card-left-card-info">
+                  <h3>澳門機加酒✈３天２夜</h3>
+                  <p>
+                    <span>9,999</span>
+                    起
+                  </p>
+                </div>
+              </div>
+              <div class="solo-part-right-bottom-card-left-card">
+                <div class="solo-part-right-bottom-card-left-card-img">
+                  <img
+                    src="https://image.cdn-eztravel.com.tw/S1rtfR0GUDbwKzUDo1tA4ezQdr-hASOrwM3BDanRcQQ/rs:fit:1000:600:1/g:ce/q:95/aHR0cHM6Ly9ob3RlbC5jZG4tZXp0cmF2ZWwuY29tLnR3L2h0Zi9mcmcvRlhIL2FyZWFfMjAxL29raW5hd2FfMDMuanBn.jpg"
+                    alt=""
+                  />
+                  <div class="solo-part-right-bottom-card-left-card-label">
+                    大三巴、旅遊塔
+                  </div>
+                </div>
+
+                <div class="solo-part-right-bottom-card-left-card-info">
+                  <h3>澳門機加酒✈３天２夜</h3>
+                  <p>
+                    <span>9,999</span>
+                    起
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="solo-part-right-bottom-card-right">
+              <div class="solo-part-right-bottom-card-left-card">
+                <div class="solo-part-right-bottom-card-left-card-img">
+                  <img
+                    src="https://image.cdn-eztravel.com.tw/nx8BUldCjiYaZzsu-PWg97095IUtKYBhS5kRScx6E00/rs:fit:1000:600:1/g:ce/q:95/aHR0cHM6Ly9ob3RlbC5jZG4tZXp0cmF2ZWwuY29tLnR3L2h0Zi9mcmcvRlhIL2FyZWFfMjAxL3Rva3lvXzAxLmpwZw.jpg"
+                    alt=""
+                  />
+                  <div class="solo-part-right-bottom-card-left-card-label">
+                    晴空塔、迪士尼
+                  </div>
+                </div>
+
+                <div class="solo-part-right-bottom-card-left-card-info">
+                  <h3>東京機加酒✈５天４夜</h3>
+                  <p>
+                    <span>13,100</span>
+                    起
+                  </p>
+                </div>
+              </div>
+              <div class="solo-part-right-bottom-card-left-card">
+                <div class="solo-part-right-bottom-card-left-card-img">
+                  <img
+                    src="https://image.cdn-eztravel.com.tw/Le8YGTXFZgglS6ddQsO37D-l5LmAz-omwZAaOYdemVo/rs:fit:1000:600:1/g:ce/q:95/aHR0cHM6Ly9ob3RlbC5jZG4tZXp0cmF2ZWwuY29tLnR3L2h0Zi9mcmcvRlhIL2FyZWFfMjAxL29zYWthXzAyLmpwZw.jpg"
+                    alt=""
+                  />
+                  <div class="solo-part-right-bottom-card-left-card-label">
+                    特色美食逛街購物
+                  </div>
+                </div>
+
+                <div class="solo-part-right-bottom-card-left-card-info">
+                  <h3>大阪機加酒✈５天４夜</h3>
+                  <p>
+                    <span>12,899</span>
+                    起
+                  </p>
+                </div>
+              </div>
+              <div class="solo-part-right-bottom-card-left-card">
+                <div class="solo-part-right-bottom-card-left-card-img">
+                  <img
+                    src="https://image.cdn-eztravel.com.tw/lPBDNeXYDpVD_nLLSRbZ6ySoArw77gLOV9Kzs4OYksE/rs:fit:1000:600:1/g:ce/q:95/aHR0cHM6Ly9ldmVudC5jZG4tZXp0cmF2ZWwuY29tLnR3L2hwaW1nL2FwcC8yNjZ4MjAwLzI2NngyMDBfanhfbmdvLnBuZw.png"
+                    alt=""
+                  />
+                  <div class="solo-part-right-bottom-card-left-card-label">
+                    豐富的歷史文化
+                  </div>
+                </div>
+
+                <div class="solo-part-right-bottom-card-left-card-info">
+                  <h3>名古屋機加酒✈５天４夜</h3>
+                  <p>
+                    <span>12,299</span>
+                    起
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
